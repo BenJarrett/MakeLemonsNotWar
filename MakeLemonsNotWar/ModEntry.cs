@@ -7,35 +7,28 @@ using StardewValley;
 
 namespace MakeLemonsNotWar
 {
-    /// <summary>The mod entry point.</summary>
     internal sealed class ModEntry : Mod
     {
-        /*********
-        ** Public methods
-        *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-       /* /// <param name="helper">Provides simplified APIs for writing mods.</param>*/
+
         public override void Entry(IModHelper helper)
         {
-            helper.Events.Input.ButtonPressed += this.OnButtonPressed;
+
+            helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         }
 
 
-        /*********
-        ** Private methods
-        *********/
-        /// <summary>Raised after the player presses a button on the keyboard, controller, or mouse.</summary>
-/*        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>*/
-        private void OnButtonPressed(object sender, ButtonPressedEventArgs e)
+        private void OnDayStarted(object? sender, DayStartedEventArgs e)
         {
-            // ignore if player hasn't loaded a save yet
-            if (!Context.IsWorldReady)
-                return;
+            this.Monitor.Log("A new day dawns!", LogLevel.Info);
 
-            // print button presses to the console window
-            this.Monitor.Log($"{Game1.player.Name} pressed {e.Button}.", LogLevel.Debug);
+            // Get the player
+            Farmer player = Game1.player;
 
+            // Add a melon seed to the player's inventory
+            player.addItemToInventory(new Object(472, 1)); // 472 is the ID for Melon Seeds
+
+            // Notify the player about receiving the melon seed
+            Game1.showGlobalMessage("You received a melon seed!");
         }
     }
 }
