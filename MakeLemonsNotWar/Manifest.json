@@ -1,0 +1,12 @@
+{
+  {
+    "Name": "Make Lemons Not War",
+    "Author": "Ben Jarrett",
+    "Version": "1.0.0",
+    "Description": "Let's plant some lemons, shall we?'",
+    "UniqueID": "BenJarrett.MakeLemonsNotWar",
+    "EntryDll": "MaleLemonsNotWar.dll",
+    "MinimumApiVersion": "3.0.0",
+    "UpdateKeys": []
+  }
+}
